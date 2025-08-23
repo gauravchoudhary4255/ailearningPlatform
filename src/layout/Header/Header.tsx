@@ -8,7 +8,7 @@ import {
   LogOut,
   Key,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,12 +26,15 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-8">
-          <Link
+          <NavLink
             to="/"
-            className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
+            className={({ isActive }) =>
+              isActive ? 'flex items-center space-x-2  text-blue-600 nav-link text-shadow-neon' : 'flex items-center space-x-2 text-gray-700 hover:text-blue-600 nav-link'
+            }
+            // className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 nav-link"
           >
             <HomeIcon size={20} /> <span>Home</span>
-          </Link>
+          </NavLink>
           <Link
             to="/"
             className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"

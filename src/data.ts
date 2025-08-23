@@ -8,6 +8,7 @@ export const products = [
     image: "https://picsum.dev/300/300?random=1",
     inStock: true,
     rating: 4.5,
+    numberOfProducts: 10,
     type: "product",
   },
   {
@@ -20,6 +21,7 @@ export const products = [
       "https://placeholder.vn/placeholder/300x300?bg=3b82f6&color=ffffff&text=Smartphone",
     inStock: true,
     rating: 4.8,
+    numberOfProducts: 7,
     type: "product",
   },
   {
@@ -31,6 +33,7 @@ export const products = [
     image: "https://picsum.dev/300/300?random=2",
     inStock: false,
     rating: 4.2,
+    numberOfProducts: 6,
     type: "product",
   },
   {
@@ -43,6 +46,7 @@ export const products = [
       "https://placeholder.vn/placeholder/300x300?bg=059669&color=ffffff&text=Gaming+Mouse",
     inStock: true,
     rating: 4.6,
+    numberOfProducts: 8,
     type: "product",
   },
   {
@@ -54,6 +58,7 @@ export const products = [
     image: "https://picsum.dev/300/300?random=3",
     inStock: true,
     rating: 4.4,
+    numberOfProducts: 7,
     type: "product",
   },
 
@@ -63,11 +68,10 @@ export const products = [
     description: "AI Based Node.js Course 1 day availablity",
     price: 10,
     category: "Courses",
-    image:
-      "https://download.logo.wine/logo/Node.js/Node.js-Logo.wine.png",
+    image: "https://download.logo.wine/logo/Node.js/Node.js-Logo.wine.png",
     inStock: true,
     rating: 4.4,
-    type: "product",
+    type: "service",
   },
 
   {
@@ -80,7 +84,7 @@ export const products = [
       "https://download.logo.wine/logo/React_(web_framework)/React_(web_framework)-Logo.wine.png",
     inStock: true,
     rating: 4.4,
-    type: "product",
+    type: "service",
   },
 
   {
@@ -91,9 +95,9 @@ export const products = [
     category: "Courses",
     image:
       "http://download.logo.wine/logo/Amazon_Web_Services/Amazon_Web_Services-Logo.wine.png",
-    inStock: true,
+    inStock: false,
     rating: 4.4,
-    type: "product",
+    type: "service",
   },
   {
     id: 9,
@@ -105,6 +109,6 @@ export const products = [
       "https://download.logo.wine/logo/Python_(programming_language)/Python_(programming_language)-Logo.wine.png",
     inStock: true,
     rating: 4.4,
-    type: "product",
+    type: "service",
   },
 ];
