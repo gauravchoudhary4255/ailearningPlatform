@@ -7,6 +7,7 @@ import {
   User,
   LogOut,
   Key,
+  BrainCircuit
 } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -34,6 +35,11 @@ export default function Header() {
             // className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 nav-link"
           >
             <HomeIcon size={20} /> <span>Home</span>
+          </NavLink>
+          <NavLink to ="/aiServices" className={({ isActive }) => isActive ? 'flex items-center space-x-2  text-blue-600 nav-link text-shadow-neon' : 'flex items-center space-x-2 text-gray-700 hover:text-blue-600 nav-link'}>
+            {/* <div className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"> */}
+              <BrainCircuit size={20} />
+              <span>AI Services</span>
           </NavLink>
           <Link
             to="/"
