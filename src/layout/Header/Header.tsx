@@ -9,13 +9,17 @@ import {
   Key,
   BrainCircuit
 } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink , useLocation } from "react-router-dom";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isLogIn, setIsLogIn] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
+  console.log(currentPath , "check the current path");
 
+  
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -24,7 +28,7 @@ export default function Header() {
         <Link to="/" className="text-2xl font-bold text-blue-600">
           <h1>AI Learning Hub</h1>{" "}
         </Link>
-
+       
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-8">
           <NavLink

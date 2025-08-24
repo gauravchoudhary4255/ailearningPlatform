@@ -5,10 +5,11 @@ export default function SelectProduct() {
   const { id } = useParams<{ id: string }>();
   const [item, setItem] = useState({});
   const [quantity, setQuantity] = useState(0);
-  let s = [1, 2, 3, 4, 5];
+  const hadnleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setQuantity(Number(e.target.value));
+  };
   // const
   const selectedItem: any = products.find((item: any) => {
-    console.log(item);
     return Number(item.id) === Number(id);
   });
   return (
@@ -47,15 +48,27 @@ export default function SelectProduct() {
       </p>
       <div className="mt-4">
         <label className="block font-medium text-gray-700 mb-1">Quantity</label>
-        <select
-          value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
-          className=" px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
-        >
-          {s.map((i, d) => (
-            <option key={+d}> {i}</option>
-          ))}{" "}
-        </select>
+        {
+          
+          (selectedItem?.inStock && selectedItem?.type?.toLowerCase() === "product") &&(
+            <select
+            value={quantity}
+            onChange={(e)=>{hadnleQuantityChange(e)}}
+            className=" px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+          >
+            {
+            [...new Array(selectedItem?.numberOfProducts)].map((i,d)=>{
+              return (
+                <option key={d} value={d + 1}>
+                  {d + 1}
+                </option>
+              );
+            })
+          }{" "}
+          </select>
+          )
+        }
+      
       </div>
       {/* Rating */}
       <div className="flex items-center mt-2">

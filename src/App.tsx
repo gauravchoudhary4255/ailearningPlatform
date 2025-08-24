@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import LoginPage from "./components/Login";
 import SelectProduct from "./components/SelectProduct";
 import AiServices from "./components/AiServices";
+import AdminLogin from "./components/AdminLogin";
 
 function App(){
 return <>
@@ -17,6 +18,7 @@ return <>
 <Route path="/aiServices" element={<AiServices/>}/>
 </Routes>
 <Footer/>
+
 </>
 }
 
