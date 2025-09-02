@@ -1,7 +1,33 @@
 import { Star } from "lucide-react";
-import { Link } from "react-router-dom";
-
+import { Link , useNavigate} from "react-router-dom";
+import { useDispatch  ,useSelector} from "react-redux";
+import { add } from "../Redux/CartSlice";
 export default function Products({ getList }: { getList: any[] }) {
+  const cartData = useSelector((state : any)=>state.cart);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const checkAddedtoCart =  (product : any)=>{
+    const existInCart = cartData.some((cartExistData : any)=>{console.log(cartExistData)
+      return  Number(cartExistData.id) === Number(product.id);});
+     return existInCart ? "Added Into The Cart" : "Add To Cart"
+  }
+  const handleCartData = (product : any)=>{
+    console.log(cartData , "check the cart data")
+    if(cartData.length){
+      const existInCart = cartData.some((cartExistData : any)=>{console.log(cartExistData)
+   return  Number(cartExistData.id) === Number(product.id);});
+        if(existInCart){
+          return
+          // dispatch(add(product))
+        }else{
+          dispatch(add(product))
+        }
+    }else{
+      dispatch(add(product))
+    }
+            
+          
+  }
     return(
         <>
         
@@ -32,7 +58,7 @@ export default function Products({ getList }: { getList: any[] }) {
             {/* Price + Rating */}
             <div className="mt-4 flex items-center justify-between">
               <span className="text-xl font-bold text-blue-600">
-                ${getProducts.price}
+              ₹ {getProducts.price}
               </span>
               <div className="flex items-center gap-1 text-yellow-500">
                 <Star className="w-4 h-4 fill-current" />
@@ -62,7 +88,7 @@ export default function Products({ getList }: { getList: any[] }) {
                 </span>
               )}
             </div>
-
+            </Link>
             {/* Add to Cart Button */}
             <button
               disabled={!getProducts.inStock}
@@ -71,15 +97,19 @@ export default function Products({ getList }: { getList: any[] }) {
                   ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
+              onClick={()=> 
+                getProducts.type === "product" ? 
+                handleCartData(getProducts) : navigate(`/selectproduct/${getProducts.id}`)
+              }
             >
               {/* {(getProducts?.type.toLocaleLowerCase() === "product") ? "Product"  : "Service" } */}
               {getProducts.type === "product"
                 ? getProducts.inStock
-                  ? "Add to Cart"
+                  ? checkAddedtoCart(getProducts)
                   : "Unavailable"
                 : "Service"}
             </button>
-            </Link>
+         
           </div>
         ))}
         </>

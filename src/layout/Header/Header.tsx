@@ -9,17 +9,16 @@ import {
   Key,
   BrainCircuit
 } from "lucide-react";
-import { Link, NavLink , useLocation } from "react-router-dom";
+import { Link, NavLink  } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isLogIn, setIsLogIn] = useState(false);
-  const location = useLocation();
-  const currentPath = location.pathname;
-  console.log(currentPath , "check the current path");
+  const cartData = useSelector((state : any)=> state.cart);
 
-  
+  console.log(cartData , "cjeck this data")
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -45,13 +44,13 @@ export default function Header() {
               <BrainCircuit size={20} />
               <span>AI Services</span>
           </NavLink>
-          <Link
-            to="/"
-            className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
+          <NavLink
+            to="/cart"
+            className={({ isActive }) => isActive ? 'flex items-center space-x-2  text-blue-600 nav-link text-shadow-neon' : 'flex items-center space-x-2 text-gray-700 hover:text-blue-600 nav-link'}
           >
             <ShoppingCart size={20} />
-            <span>Cart</span>
-          </Link>
+            <span>Cart {cartData.length  ? cartData.length : ""}</span>
+          </NavLink>
           <button
             onClick={() => {
               setIsProfileOpen(!isProfileOpen);
@@ -125,7 +124,7 @@ export default function Header() {
             className="flex items-center space-x-2 text-gray-700 hover:text-blue-600"
           >
             <ShoppingCart size={20} />
-            <span>Cart</span>
+            <span>Cart {cartData.length  ? cartData.length : ""}</span>
           </Link>
           <button
             onClick={() => {

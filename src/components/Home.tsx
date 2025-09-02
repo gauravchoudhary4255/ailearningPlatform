@@ -1,12 +1,29 @@
 import { products } from "../data"; // <- adjust
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import Products from "./Products";
-
+import axios from "axios";
 
 export default function Home() {
   const [type, setType] = useState("all");
   const [getList, setList] = useState([{}]);
   const [getProducts, setGetProducts] = useState([{}]);
+
+
+  // const data =  useSelector((state:any)=>{
+  //   console.log("state from redux", state.show.value)
+  //   return state.show.value
+
+  // })
+  // console.log("data from redux", data)
+  // const getData = async()=>{
+  //   try{
+  //     const data = await axios.get('http://localhost:5001/product/getAllProductsAndServices', {});
+
+  //   console.log(data.data.data, "here is backend data")
+  //   }catch(err : any){
+  //     console.log(err)
+  //   }
+  // }
 
   const updateProduct = async() => {
     console.log("Fetching products ...  at refresh")
@@ -16,6 +33,7 @@ export default function Home() {
 
   useEffect(() => {
     updateProduct();
+    // getData();
   }, []);
 
   const setSelectedType = (category: string) => {
