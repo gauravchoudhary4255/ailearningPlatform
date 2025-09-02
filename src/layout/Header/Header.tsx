@@ -62,16 +62,16 @@ export default function Header() {
           {isProfileOpen && (
             <div className="absolute right-20 mt-8 w-44 rounded-xl bg-white shadow-lg ring-1 ring-black/5">
               <div className="flex flex-col py-2">
-                <Link
+                {/* <Link
                   to="/"
                   className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   //   onClick={() => setOpen(false)}
                 >
                   <User className="w-4 h-4" />
                   Profile
-                </Link>
+                </Link> */}
                 <Link
-                  to="/logout"
+                  to="/login"
                   className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   //   onClick={() => setOpen(false)}
                 >

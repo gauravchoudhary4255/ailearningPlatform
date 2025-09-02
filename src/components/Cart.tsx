@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 export const Cart = () => {
   const cartData = useSelector((state: any) => state.cart);
-  console.log(cartData, "carData On Cart Page");
+  const getTotalAmount = cartData.reduce((current , data)=>{ return current += data.price},0)
   return (
     <div className="flex justify-center p-6 bg-gray-100">
       <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
@@ -41,7 +41,7 @@ export const Cart = () => {
             <div className="mt-6 border-t pt-4">
               <div className="mb-4 flex items-center justify-between">
                 <span className="font-semibold">Total</span>
-                <span className="font-bold">₹1997</span>
+                <span className="font-bold">₹{getTotalAmount}</span>
               </div>
               <button className="w-full rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
                 Checkout
