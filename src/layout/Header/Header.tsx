@@ -18,7 +18,6 @@ export default function Header() {
   const [isLogIn, setIsLogIn] = useState(false);
   const cartData = useSelector((state : any)=> state.cart);
 
-  console.log(cartData , "cjeck this data")
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between p-4">

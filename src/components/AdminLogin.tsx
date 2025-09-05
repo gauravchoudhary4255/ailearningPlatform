@@ -14,7 +14,7 @@ export default function AdminLogin() {
     }
 
     // TODO: Replace with your API call
-    console.log("Admin Login Attempt:", { email, password });
+    // console.log("Admin Login Attempt:", { email, password });
     setError("");
   };
 

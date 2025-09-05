@@ -1,12 +1,40 @@
 import { useParams } from "react-router-dom";
 import { products } from "../data";
 import { useState } from "react";
+import { useDispatch , useSelector } from "react-redux";
+import {add , remove} from '../Redux/CartSlice'
 export default function SelectProduct() {
   const { id } = useParams<{ id: string }>();
   const [item, setItem] = useState({});
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const cartData = useSelector((state: any) => state.cart);
+  const dispatch = useDispatch();
+  const checkAddedtoCart = (product: any) => {
+    const existInCart = cartData.some((cartExistData: any) => {
+      return Number(cartExistData.id) === Number(product.id);
+    });
+    return existInCart ? "Item Aded into the cart" : "Add To Cart";
+  };
   const hadnleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setQuantity(Number(e.target.value));
+  };
+  const handleCartData = (product: any) => {
+    if (cartData.length) {
+      const existInCart = cartData.some((cartExistData: any) => {
+        return Number(cartExistData.id) === Number(product.id);
+      });
+      if (existInCart) {
+
+        return;
+        // dispatch(add(product))
+      } else {
+        // product.quantity = 1
+        dispatch(add(product));
+      }
+    } else {
+      // product.quantity = 1
+      dispatch(add(product));
+    }
   };
   // const
   const selectedItem: any = products.find((item: any) => {
@@ -81,8 +109,10 @@ export default function SelectProduct() {
 
       {/* Action Buttons */}
       <div className="mt-4 flex gap-3">
-        <button className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
-          Add to Cart
+        <button className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition"
+        onClick={()=>{handleCartData(selectedItem)}}
+        >
+          {checkAddedtoCart(selectedItem)}
         </button>
       </div>
     </div>

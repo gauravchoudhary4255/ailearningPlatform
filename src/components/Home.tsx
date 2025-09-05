@@ -26,7 +26,7 @@ export default function Home() {
   // }
 
   const updateProduct = async() => {
-    console.log("Fetching products ...  at refresh")
+    // console.log("Fetching products ...  at refresh")
     setGetProducts([...products]);
     setList([...products]);
   };
@@ -64,8 +64,8 @@ export default function Home() {
         break;
     }
   };
-  console.log("getProducts", getProducts);
-  console.log(type, "type");
+  // console.log("getProducts", getProducts);
+  // console.log(type, "type");
   useEffect(() => {}, [type]);
   return (
     <div className="container mx-auto px-4 py-3">
