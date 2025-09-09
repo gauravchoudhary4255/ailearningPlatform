@@ -1,9 +1,9 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
-
+   const navigate =  useNavigate()
   const handleEmailLogin = (e : React.FormEvent<HTMLFormElement>) : void => {
     e.preventDefault();
     // console.log("Email:", email, "OTP:", otp);
@@ -74,6 +74,9 @@ export default function LoginPage() {
           <button
             type="submit"
             className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            onClick={()=>{
+              navigate('/')
+            }}
           >
             Login
           </button>
