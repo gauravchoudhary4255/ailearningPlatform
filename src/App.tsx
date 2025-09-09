@@ -6,7 +6,9 @@ import LoginPage from "./components/Login";
 import SelectProduct from "./components/SelectProduct";
 import AiServices from "./components/AiServices";
 import AiAgent from './components/AiAgent';
-import{ Cart} from './components/Cart'
+import{ Cart} from './components/Cart';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App(){
 return <>
@@ -21,7 +23,7 @@ return <>
 <Route path="/cart" element={<Cart/>}/>
 </Routes>
 <Footer/>
-
+<ToastContainer position="top-right" autoClose={3000} />
 </>
 }
 

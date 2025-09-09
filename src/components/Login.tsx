@@ -1,15 +1,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../utils/notify";
+import  {authService}  from '../services/api/authService'
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
    const navigate =  useNavigate()
   const handleEmailLogin = (e : React.FormEvent<HTMLFormElement>) : void => {
     e.preventDefault();
-    // console.log("Email:", email, "OTP:", otp);
-    // TODO: call your backend API here
   };
 
+  const handleLogin = async ()=>{
+    if(!otp || !email){
+      notify.warning("Please Add email and Otp")
+    }else{
+      let data = {
+       email,
+       otp : Number(otp)
+      }
+     const apiData : any=  await authService.login(data);
+     if(Number(apiData?.status) !== 200){
+      notify.error(apiData?.data?.message || apiData?.data?.msg);
+     }else{
+      const token = apiData.data.data.tokenData.token
+      localStorage.setItem("token", token);
+      notify.success(apiData?.data?.message)
+      navigate('/')
+     }
+    } 
+  }
   const handleGoogleLogin = () => {
     console.log("Google Sign-In clicked");
     // TODO: integrate Google OAuth here
@@ -59,7 +78,7 @@ export default function LoginPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              OTP
+              OTP (use 9898 otp)
             </label>
             <input
               type="text"
@@ -75,7 +94,8 @@ export default function LoginPage() {
             type="submit"
             className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
             onClick={()=>{
-              navigate('/')
+              // navigate('/'),
+              handleLogin()
             }}
           >
             Login

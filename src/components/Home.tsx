@@ -1,46 +1,33 @@
-import { products } from "../data"; // <- adjust
+
 import {  useEffect, useState } from "react";
 import Products from "./Products";
-import axios from "axios";
-
+import {productService }from '../services/api/productService'
 export default function Home() {
   const [type, setType] = useState("all");
   const [getList, setList] = useState([{}]);
   const [getProducts, setGetProducts] = useState([{}]);
+  const getData = async()=>{
+    try{
+      const data = await productService.getProduct();
+      if(Number(data.status) === 200){
+       setGetProducts([...data.data.data]);
+       setList([...data.data.data]);
+      }
+    }catch(err : any){
+      console.log(err)
+    }
+  }
 
-
-  // const data =  useSelector((state:any)=>{
-  //   console.log("state from redux", state.show.value)
-  //   return state.show.value
-
-  // })
-  // console.log("data from redux", data)
-  // const getData = async()=>{
-  //   try{
-  //     const data = await axios.get('http://localhost:5001/product/getAllProductsAndServices', {});
-
-  //   console.log(data.data.data, "here is backend data")
-  //   }catch(err : any){
-  //     console.log(err)
-  //   }
-  // }
-
-  const updateProduct = async() => {
-    // console.log("Fetching products ...  at refresh")
-    setGetProducts([...products]);
-    setList([...products]);
-  };
 
   useEffect(() => {
-    updateProduct();
-    // getData();
+    getData();
   }, []);
 
   const setSelectedType = (category: string) => {
     switch (category) {
       case "All":
         setType("all");
-        setList(products);
+        setList(getList);
         break;
       case "Product":
         setType("product");
@@ -60,7 +47,7 @@ export default function Home() {
         break;
       default:
         setType("all");
-        setList(products);
+        setList(getList);
         break;
     }
   };
