@@ -19,7 +19,7 @@ A modern **React + TypeScript** application that helps learners subscribe to cou
 
 - ⚛️ **React.js** (with TypeScript)  
 - 📦 **Redux Toolkit** (state management)  
-- 🤖 **AI Agent Integration** (OpenAI API or similar)  
+- 🤖 **AI Agent Integration** (Gemini 2.5 flash)  
 - 🎨 **TailwindCSS** / CSS Modules (styling)  
 
 ---
@@ -29,4 +29,4 @@ A modern **React + TypeScript** application that helps learners subscribe to cou
 1️⃣ Clone the repo  
 ```bash
 git clone https://github.com/your-username/react-ai-course-platform.git
-cd react-ai-course-platform
+cd react-ai-course-platform](https://github.com/gauravchoudhary4255/ailearningPlatform.git)
