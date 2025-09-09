@@ -1,7 +1,8 @@
 
 import {  useEffect, useState } from "react";
 import Products from "./Products";
-import {productService }from '../services/api/productService'
+import {productService }from '../services/api/productService';
+import { notify } from "../utils/notify";
 export default function Home() {
   const [type, setType] = useState("all");
   const [getList, setList] = useState([{}]);
@@ -10,8 +11,11 @@ export default function Home() {
     try{
       const data = await productService.getProduct();
       if(Number(data.status) === 200){
+        notify.success('Products and Service List fetched')
        setGetProducts([...data.data.data]);
        setList([...data.data.data]);
+      }else{
+        notify.error('There is SomeInternal Servor Error')
       }
     }catch(err : any){
       console.log(err)
@@ -27,7 +31,7 @@ export default function Home() {
     switch (category) {
       case "All":
         setType("all");
-        setList(getList);
+        setList(getProducts);
         break;
       case "Product":
         setType("product");
@@ -47,7 +51,7 @@ export default function Home() {
         break;
       default:
         setType("all");
-        setList(getList);
+        setList(getProducts);
         break;
     }
   };

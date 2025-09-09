@@ -17,7 +17,7 @@ return <>
 <Routes>
 <Route path="/" element={<Home/>} />
 <Route path = "/login" element={<LoginPage/>} />
-<Route path="/selectproduct/:id" element={<SelectProduct/>}/>
+<Route path="/selectproduct/:_id" element={<SelectProduct/>}/>
 <Route path="/aiServices" element={<AiServices/>}/>
 <Route path="/aiServices/:id" element= {<AiAgent/>}/>
 <Route path="/cart" element={<Cart/>}/>

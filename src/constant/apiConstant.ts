@@ -9,6 +9,7 @@ export const ENDPOINTS = {
     // },
     PRODUCT: {
       LIST: "product/getAllProductsAndServices",
+      GETPRODUCTBYID : "product/getProductAndServiceById"
     //   DETAIL: (id: string) => `/products/${id}`,
     //   CREATE: "/products",
     },

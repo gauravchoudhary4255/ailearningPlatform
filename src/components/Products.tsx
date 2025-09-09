@@ -10,17 +10,17 @@ export default function Products({ getList }: { getList: any[] }) {
   const dispatch = useDispatch();
   const checkAddedtoCart = (product: any) => {
     const existInCart = cartData.some((cartExistData: any) => {
-      return Number(cartExistData.id) === Number(product.id);
+      return Number(cartExistData._id) === Number(product._id);
     });
     return existInCart ? "Added Into The Cart" : "Add To Cart";
   };
   const handleCartData = (product: any) => {
     if (cartData.length) {
       const existInCart = cartData.some((cartExistData: any) => {
-        return Number(cartExistData.id) === Number(product.id);
+        return Number(cartExistData._id) === Number(product._id);
       });
       if (existInCart) {
-        dispatch(remove(product.id))
+        dispatch(remove(product._id))
         return;
       } else {
         dispatch(add({...product,  quantity : quantity}));
@@ -33,10 +33,10 @@ export default function Products({ getList }: { getList: any[] }) {
     <>
       {getList.map((getProducts: any) => (
         <div
-          key={getProducts.id}
+          key={getProducts._id}
           className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-4 flex flex-col"
         >
-          <Link to={`/selectproduct/${getProducts.id}`}>
+          <Link to={`/selectproduct/${getProducts._id}`}>
             {/* Product Image */}
             <img
               src={getProducts.image}
@@ -57,7 +57,7 @@ export default function Products({ getList }: { getList: any[] }) {
             {/* Price + Rating */}
             <div className="mt-4 flex items-center justify-between">
               <span className="text-xl font-bold text-blue-600">
-                ₹ {getProducts.price}
+                ₹ {Math.floor(getProducts.price)}
               </span>
               <div className="flex items-center gap-1 text-yellow-500">
                 <Star className="w-4 h-4 fill-current" />
@@ -99,7 +99,7 @@ export default function Products({ getList }: { getList: any[] }) {
             onClick={() =>
               getProducts.type === "product"
                 ? handleCartData(getProducts)
-                : navigate(`/selectproduct/${getProducts.id}`)
+                : navigate(`/selectproduct/${getProducts._id}`)
             }
           >
             {/* {(getProducts?.type.toLocaleLowerCase() === "product") ? "Product"  : "Service" } */}
