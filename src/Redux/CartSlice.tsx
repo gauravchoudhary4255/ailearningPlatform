@@ -8,11 +8,11 @@ const cartSlice = createSlice({
             state.push(action.payload);
         },
          remove  : (state , action)=>{
-         return  state.filter((data : any)=> data.id !== action.payload)
+         return  state.filter((data : any)=> data._id !== action.payload)
         },
         update  : (state , action)=>{
-            const {id  , quantity} =  action.payload;
-            const itemToUpdate = state.find(item => item.id === id);
+            const {_id  , quantity} =  action.payload;
+            const itemToUpdate = state.find(item => item._id === _id);
           if (itemToUpdate) {
             itemToUpdate.quantity = quantity; // Immer handles the immutability
           } 

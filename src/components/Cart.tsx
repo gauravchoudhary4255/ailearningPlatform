@@ -6,7 +6,9 @@ export const Cart = () => {
    const [openModel ,  setModel] = useState(false)
   const dispatch = useDispatch();
   const cartData = useSelector((state: any) => state.cart);
+  console.log(cartData , "Check this data ")
   const getTotalAmount = cartData.reduce((current: any, data: any) => {
+    // console.log(data , "check value")
     return Math.round((current += data.price * data.quantity));
   }, 0);
   const handleRemove = (e: any) => {
@@ -16,7 +18,7 @@ export const Cart = () => {
 
   const handleCartQuantity = (e, cartId) => {
     const productQuantity = {
-      id: cartId,
+      _id: cartId,
       quantity: e.target.value,
     };
     dispatch(update(productQuantity));
@@ -41,7 +43,7 @@ export const Cart = () => {
                 {/* Single Item */}
                 <div className="flex items-center justify-between rounded border p-4">
                   <div>
-                    <h3 className="font-medium" key={cart.id}>
+                    <h3 className="font-medium" key={cart._id}>
                       {cart.name}
                     </h3>
                     <p className="text-sm text-gray-500">
@@ -54,7 +56,7 @@ export const Cart = () => {
                           <select
                             value={cart.quantity}
                             onChange={(e) => {
-                              handleCartQuantity(e, cart.id);
+                              handleCartQuantity(e, cart._id);
                             }}
                             className=" px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
                           >
@@ -75,7 +77,7 @@ export const Cart = () => {
                     className="rounded bg-red-500 px-3 py-1 text-sm text-white hover:bg-red-600"
                     // value={cart}
                     onClick={() => {
-                      handleRemove(cart.id);
+                      handleRemove(cart._id);
                     }}
                   >
                     Remove

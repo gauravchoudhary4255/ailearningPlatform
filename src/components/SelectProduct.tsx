@@ -13,7 +13,7 @@ export default function SelectProduct() {
   const dispatch = useDispatch();
   const checkAddedtoCart = (product: any) => {
     const existInCart = cartData.some((cartExistData: any) => {
-      return Number(cartExistData._id) === Number(product._id);
+      return cartExistData._id === product._id;
     });
     return existInCart ? "Item Aded into the cart" : "Add To Cart";
   };
@@ -23,25 +23,23 @@ export default function SelectProduct() {
   const handleCartData = (product: any) => {
     if (cartData.length) {
       const existInCart = cartData.some((cartExistData: any) => {
-        return Number(cartExistData._id) === Number(product._id);
+        return cartExistData._id === product._id;
       });
       if (existInCart) {
 
         return;
         // dispatch(add(product))
       } else {
-        // product.quantity = 1
+         product.quantity = 1
         dispatch(add(product));
       }
     } else {
-      // product.quantity = 1
+       product.quantity = 1
       dispatch(add(product));
     }
   };
   // const
   const getProduct = async()=>{
-   
-     
     const productId = {
       _id : _id
     }

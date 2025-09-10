@@ -10,14 +10,14 @@ export default function Products({ getList }: { getList: any[] }) {
   const dispatch = useDispatch();
   const checkAddedtoCart = (product: any) => {
     const existInCart = cartData.some((cartExistData: any) => {
-      return Number(cartExistData._id) === Number(product._id);
+      return cartExistData._id === product._id;
     });
     return existInCart ? "Added Into The Cart" : "Add To Cart";
   };
   const handleCartData = (product: any) => {
     if (cartData.length) {
       const existInCart = cartData.some((cartExistData: any) => {
-        return Number(cartExistData._id) === Number(product._id);
+        return cartExistData._id === product._id;
       });
       if (existInCart) {
         dispatch(remove(product._id))
