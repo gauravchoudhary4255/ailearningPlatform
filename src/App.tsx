@@ -19,7 +19,7 @@ return <>
 <Route path = "/login" element={<LoginPage/>} />
 <Route path="/selectproduct/:_id" element={<SelectProduct/>}/>
 <Route path="/aiServices" element={<AiServices/>}/>
-<Route path="/aiServices/:id" element= {<AiAgent/>}/>
+<Route path="/aiServices/:_id" element= {<AiAgent/>}/>
 <Route path="/cart" element={<Cart/>}/>
 </Routes>
 <Footer/>

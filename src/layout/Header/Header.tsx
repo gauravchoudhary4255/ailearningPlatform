@@ -73,6 +73,7 @@ export default function Header() {
                   to="/login"
                   className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   //   onClick={() => setOpen(false)}
+                  onClick={()=>{localStorage.removeItem('token');} }
                 >
                   <LogOut className="w-4 h-4" />
                   Logout
@@ -147,7 +148,7 @@ export default function Header() {
                 <Link
                   to="/logout"
                   className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  //   onClick={() => setOpen(false)}
+                   onClick={()=>{localStorage.removeItem('token');} }
                 >
                   <LogOut className="w-4 h-4" />
                   Logout

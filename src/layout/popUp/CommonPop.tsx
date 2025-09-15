@@ -46,7 +46,6 @@ export default function MyModal() {
                   onClick={
                     ()=>{
                      
-                        close,
                         handleClearCart()
                     }
        
